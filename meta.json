@@ -15,4 +15,15 @@
     "inLanguage": "it",
     "copyrightHolder": "Davide Vigano'",
     "copyrightYear": "2022-2022",
+    "author": {
+        "@type": "Person",
+        "name": "Davide Vigano'",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "338 9580675",
+            "contactType": "customer service",
+            "areaServed": "IT",
+            "email": "prova@gmail.com"
+        }
+    }
 }
