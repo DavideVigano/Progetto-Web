@@ -1,7 +1,7 @@
 {
     "@context": "http://schema.org",
     "@type": "WebPage",
-    "image": "",
+    "image": "immagine.jpeg",
     "url": "https://localhost/ProgettoWeb/index.html",
     "name": "Meteo Home",
     "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo, con dettaglio per località sciistiche, marittime con anche la sezione Areonautica.",
@@ -20,7 +20,7 @@
             "https://twitter.com/",
             "https://www.youtube.com/channel/"
         ],
-        "logo": "immage.png",
+        "logo": "immagine.png",
         "email": "prova@gmail.com",
         "address": {
             "@type": "PostalAddress",
