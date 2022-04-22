@@ -1,0 +1,87 @@
+/* Stile generale per pagina*/
+
+    .centro{
+        text-align: center;
+    }
+
+    .max-height{
+        height: 100%;
+    }
+
+    .max-width{
+        width: 100%;
+    }
+
+/* Stile per Slider */
+
+    #myCarousel{
+        height: 400px;
+    }
+
+    .sizeImg{
+        height: 400px;
+    }
+
+    h1 a {
+        color: whitesmoke;
+        text-decoration: none;
+    }
+
+    h1 a:hover {
+        color: whitesmoke;
+        text-decoration: underline;
+        font-size: 45px;
+    }
+
+    .buttonSlide{
+        vertical-align: inherit;
+    }
+
+/* Stile per Anteprima meteo */
+
+    .containerPrevisioni{
+        margin-top: 10px;
+        padding: 15px;
+    }
+
+    .svgMeteo{
+        height: 140px;
+        width: 140px;
+    }
+
+    .title-meteo{
+        font-size: 30px;
+        color: #212529;
+        text-decoration: none;
+    }
+
+    .title-meteo:hover{
+        color: #212529;
+        text-decoration: underline;
+    }
+
+    .temperatura-meteo{
+        margin-top: -8px;
+        font-style: inherit;
+        color: #343A40;
+        font-size: 30px;
+    }
+
+/* Stile per Notizie */
+
+    .dim-imm-notizia{
+        height: 250px;
+        width: 200px;
+    }
+
+
+
+@media (max-width: 768px) {
+    #myCarousel{
+        height: 250px;
+    }
+    
+    .sizeImg{
+        height: 250px;
+    }
+}
