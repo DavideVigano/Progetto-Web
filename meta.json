@@ -3,39 +3,16 @@
     "@type": "WebPage",
     "image": "immagine.jpeg",
     "url": "https://localhost/ProgettoWeb/index.html",
+    "sameAs": [
+        "https://www.facebook.com/",
+        "https://www.instagram.com/",
+        "https://twitter.com/",
+        "https://www.youtube.com/channel/"
+    ],
     "name": "Meteo Home",
     "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo, con dettaglio per località sciistiche, marittime con anche la sezione Areonautica.",
     "keywords": "meteo, previsioni, temperatura, week end, caldo, freddo, mare, montagna, pioggia, neve, tempo, condizioni atmosferiche",
     "inLanguage": "it",
     "copyrightHolder": "Davide Vigano'",
     "copyrightYear": "2022-2022",
-    "author": {
-        "@type": "Organization",
-        "name": "Meteo",
-        "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo, con dettaglio per località sciistiche, marittime con anche la sezione Areonautica.",
-        "url": "https://localhost/ProgettoWeb/index.html",
-        "sameAs": [
-            "https://www.facebook.com/",
-            "https://www.instagram.com/",
-            "https://twitter.com/",
-            "https://www.youtube.com/channel/"
-        ],
-        "logo": "immagine.png",
-        "email": "prova@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Via Giovanni Paolo I 2/2",
-            "addressLocality": "Vizzolo Predabissi",
-            "addressRegion": "IT",
-            "postalCode": "20070",
-            "addressCountry": "IT"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "338 9580675",
-            "contactType": "customer service",
-            "areaServed": "IT",
-            "email": "prova@gmail.com"
-        }
-    }
 }
