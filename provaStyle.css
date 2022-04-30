@@ -36,7 +36,7 @@
 }
 
 
-#scrittaLogo{
+.logo-name{
     color: white;
 }
 
@@ -48,33 +48,19 @@
 .search-input{
     text-align: center;
     width: 70%;
-    padding: 4px 0px;
+    padding: 4px;
+    padding-right: 20px;
     border-style: solid;
     border-color: #0F80AA;
+    border-radius: 20px;
+    background: #0F80AA url(Images/General/icons-search-25.png) no-repeat right;
+    background-origin: content-box;
+    padding-right: 15px;
     color: white;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    margin-right: 0px;
-    background: #0F80AA url(Immagini/General/icons-search-25.png) no-repeat right;
 }
 
 .search-input::placeholder{
     color: white;  
-}
-
-.svg-search{
-    color: white;
-    width: 18px;
-    height: 18px;
-}
-.icon-search{
-    border: none;
-    padding: 6px;
-    padding-right: 12px;
-    margin-left: -5px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    background-color: #0F80AA;
 }
 
 .button-lan{
@@ -86,8 +72,14 @@
     color: white;
 }
 
-.ricerche-recenti{
-    padding: 5px;
+.ricently-searches{
+    height: 80px;
+}
+
+.navbar-custom{
+    background-image: none;
+    background-color: blue;
+    color: white;
 }
 
 /* Stile per Slider */
@@ -150,6 +142,17 @@ h1 a:hover {
 .dim-imm-notizia{
     height: 250px;
     width: 200px;
+}
+
+@media(max-width:992px){
+    .search-input{
+        width: 100%;
+    }
+
+    .logo-name{
+       display: none;
+    }
+
 }
 
 
