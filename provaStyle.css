@@ -82,31 +82,21 @@
     color: white;
 }
 
-/* Stile per Slider */
-
-#myCarousel{
-    height: 400px;
+/*Stile Info meteo*/
+.card-custom{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
 }
 
-.sizeImg{
-    height: 400px;
+.card-weather{
+    border-radius: 8px;
 }
 
-h1 a {
-    color: whitesmoke;
-    text-decoration: none;
+.card-info-weather{
+    border-left: 0px;
+    border-right: 0px;
 }
-
-h1 a:hover {
-    color: whitesmoke;
-    text-decoration: underline;
-    font-size: 45px;
-}
-
-.buttonSlide{
-    vertical-align: inherit;
-}
-
 /* Stile per Anteprima meteo */
 
 .containerPrevisioni{
