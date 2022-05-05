@@ -95,41 +95,101 @@
     </nav>
     <main class="main">
 
+      <!-- card tempo -->
       <div class="card mt-3 card-weather">
         <div class="card-header" id="card1-header">
         </div>
         <div class="card-body">
           <img src="..." class="card-img" alt="...">
-          <h2 class="card-title">22°</h2>
-          <p class="card-text">Altre informazioni</p>
+          <h2 class="card-title" id="card1-temperature"></h2>
+          <p class="card-text" id="card1-info"></p>
         </div>
       </div>
 
       <div class="card mt-3 card-weather">
-        <div class="card-header" id="user-localization">
-          Nome del Posto : Ora rilevamento
+        <div class="card-header" id="card2-header">
         </div>
         <div class="card-body card-custom">
-          <h2 class="card-title p-3">22°</h2>
+          <h2 class="card-title p-3" id="card2-temperature"></h2>
           <div class="card-group">
             <div class="card card-info-weather me-3">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">
+                  Max/Min 
+                  <span id="max-min"></span>
+                </li>
+                <li class="list-group-item">
+                  Umidità
+                  <span id="humidity"></span>
+                </li>
+                <li class="list-group-item">
+                  Pressione 
+                  <span id="pressure"></span>
+                </li>
               </ul>
             </div>
             <div class="card card-info-weather">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">
+                  Percepiti
+                  <span id="feels-like"></span>
+                </li>
+                <li class="list-group-item">
+                  Vento
+                  <span id="wind"></span>
+                </li>
+                <li class="list-group-item">
+                  Visibilità
+                  <span id="visibility"></span>
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      </div>
 
+      <div class="card mt-3 card-weather">
+        <div class="card-header" id="card3-header">
+          Previsioni orarie
+        </div>
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ora</h5>
+              <p class="card-text">temperarura</p>
+              <p class="card-text"><small class="text-muted">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ora</h5>
+              <p class="card-text">temperarura</p>
+              <p class="card-text"><small class="text-muted">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ora</h5>
+              <p class="card-text">temperarura</p>
+              <p class="card-text"><small class="text-muted">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ora</h5>
+              <p class="card-text">temperarura</p>
+              <p class="card-text"><small class="text-muted">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ora</h5>
+              <p class="card-text">temperarura</p>
+              <p class="card-text"><small class="text-muted">percentuale pioggia</small></p>
+            </div>
+          </div>
+        </div>
       </div>
         <!--Separatore-->
         <hr class="featurette-divider">
