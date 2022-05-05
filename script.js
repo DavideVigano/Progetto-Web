@@ -17,7 +17,7 @@ async function getCoordinates(name){
     }
     return coordinates
 }
-async function getWether(c, units) {
+async function getWether(c, units,lang) {
 
     if (units == "C") {
         units = "metric" 
@@ -25,7 +25,7 @@ async function getWether(c, units) {
         units = "standard"
     }
 
-    let response = await fetch ("https://api.openweathermap.org/data/2.5/weather?lat="+c.lat+"&lon="+c.lon+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units,{
+    let response = await fetch ("https://api.openweathermap.org/data/2.5/weather?lat="+c.lat+"&lon="+c.lon+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units+"&lang="+lang,{
         method: "GET"
     });
     var jsonObj = await response.json();
@@ -37,7 +37,6 @@ async function insertDescriptionWeatherByName(units,city){
 
     var coordinates = await getCoordinates(city);
     jsonWeather = await getWether(coordinates,units);
-    console.log(jsonWeather);
 
     //name country
     document.getElementById("card1-header").innerText = city + ", " + jsonWeather.sys.country;
@@ -75,9 +74,8 @@ async function insertDescriptionWeatherByName(units,city){
 
 }
 
-async function insertDescriptionWeatherByCoordinates(units,coordinates){
-
-    jsonWeather = await getWether(coordinates,units);
+async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
+    jsonWeather = await getWether(coordinates,units,lang);
 
     //name country
     document.getElementById("card1-header").innerText = jsonWeather.name; + ", "+jsonWeather.sys.country;
@@ -88,7 +86,13 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates){
     document.getElementById("card1-temperature").innerText = temp + "°";
 
     //basic info
-    document.getElementById("card1-info").innerText = jsonWeather.weather[0].main + ", " + jsonWeather.weather[0].description;
+    let info = "";
+
+    jsonWeather.weather.forEach(element => {
+        info = info + " " + element.description;
+    });
+
+    document.getElementById("card1-info").innerText = info;
 
     //name country card2
     document.getElementById("card2-header").innerText = "Il meteo di oggi a "+ jsonWeather.name + " " + jsonWeather.sys.country;
@@ -96,7 +100,7 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates){
     //temperature card2
     document.getElementById("card2-temperature").innerText = temp + "°";
 
-    //info precise
+    //info
     let feels = jsonWeather.main.feels_like;
     feels = feels.toFixed(0);
 
@@ -115,23 +119,118 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates){
 
 }
 
-async function insertHourlyForcastByCoordinates(units,coordinates){
-    let response = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+coordinates.lat+"&lon="+coordinates.lon+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units,{
+async function insertHourlyForcastByCoordinates(units,coordinates,lang){
+    if (units == "C") {
+        units = "metric" 
+    }else{
+        units = "standard"
+    }
+    let response = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+coordinates.lat+"&lon="+coordinates.lon+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units+"&lang="+lang,{
         method: "GET"
     });
 
-    var jsonWeather = await response.json();
-    
-    console.log(jsonWeather.list[0].dt_txt);
+    let jsonWeather = await response.json();
 
-    jsonWeather.list.forEach(dt_txt => {
-        console.log(dt_txt);
-    });
-    
+    // take the first 5 elements
+    let arrayJsonObject =  getNElemnt(5,jsonWeather);
+    //console.log(arrayJsonObject);
 
+    //insert the hours
+    document.getElementById("hour-c3-c1").innerText = 'Ora';
+
+    let hour = arrayJsonObject[1].dt_txt
+    hour = hour.substr(11,5);
+    document.getElementById("hour-c3-c2").innerText = hour;
+
+    hour = arrayJsonObject[2].dt_txt
+    hour = hour.substr(11,5);
+    document.getElementById("hour-c3-c3").innerText = hour;
+
+    hour = arrayJsonObject[3].dt_txt
+    hour = hour.substr(11,5);
+    document.getElementById("hour-c3-c4").innerText = hour;
+
+    hour = arrayJsonObject[4].dt_txt
+    hour = hour.substr(11,5);
+    document.getElementById("hour-c3-c5").innerText = hour;
+
+    //insert temperatures
+    let temperature = arrayJsonObject[0].main.temp;
+    temperature = temperature.toFixed(0);
+    document.getElementById("temperature-c3-c1").innerText = temperature + '°';
+
+    temperature = arrayJsonObject[1].main.temp;
+    temperature = temperature.toFixed(0);
+    document.getElementById("temperature-c3-c2").innerText = temperature + '°';
+    
+    temperature = arrayJsonObject[2].main.temp;
+    temperature = temperature.toFixed(0);
+    document.getElementById("temperature-c3-c3").innerText = temperature + '°';
+
+    temperature = arrayJsonObject[3].main.temp;
+    temperature = temperature.toFixed(0);
+    document.getElementById("temperature-c3-c4").innerText = temperature + '°';
+
+    temperature = arrayJsonObject[4].main.temp;
+    temperature = temperature.toFixed(0);
+    document.getElementById("temperature-c3-c5").innerText = temperature + '°';
+
+    // immage
+    var url = "http://openweathermap.org/img/wn/";
+    var dim = "@4x.png";
+
+    let immageCode = arrayJsonObject[0].weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c3-c1").setAttribute("src",immageCode);
+
+    immageCode = arrayJsonObject[1].weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c3-c2").setAttribute("src",immageCode);
+
+    immageCode = arrayJsonObject[2].weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c3-c3").setAttribute("src",immageCode);
+
+    immageCode = arrayJsonObject[3].weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c3-c4").setAttribute("src",immageCode);
+
+    immageCode = arrayJsonObject[4].weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c3-c5").setAttribute("src",immageCode);
+    
+    //probability rain 
+    let probability = arrayJsonObject[0].pop;
+    probability = probability * 100;
+    document.getElementById("rain-c3-c1").innerText = probability + '%';
+
+    probability = arrayJsonObject[1].pop;
+    probability = probability * 100;
+    document.getElementById("rain-c3-c2").innerText = probability + '%';
+
+    probability = arrayJsonObject[2].pop;
+    probability = probability * 100;
+    document.getElementById("rain-c3-c3").innerText = probability + '%';
+
+    probability = arrayJsonObject[3].pop;
+    probability = probability * 100;
+    document.getElementById("rain-c3-c4").innerText = probability + '%';
+
+    probability = arrayJsonObject[4].pop;
+    probability = probability * 100;
+    document.getElementById("rain-c3-c5").innerText = probability + '%';
+}
+
+function getNElemnt(N,jsonObject) {
+    var arrayJsonObject = []
+    for (let index = 0; index < N; index++) {
+        arrayJsonObject[index] = jsonObject.list[index];
+    }
+    return arrayJsonObject
 }
 let units = "C";
 let city = "Milano";
+let lang = "it";
 
 let coordinates = {
     lat: 45.4642,
@@ -139,6 +238,6 @@ let coordinates = {
 }
 
 //insertDescriptionWeatherByName(units,city);
-insertDescriptionWeatherByCoordinates(units,coordinates);
-insertHourlyForcastByCoordinates(units,coordinates);
+insertDescriptionWeatherByCoordinates(units,coordinates,lang);
+insertHourlyForcastByCoordinates(units,coordinates,lang);
 
