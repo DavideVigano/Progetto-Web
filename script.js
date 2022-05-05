@@ -77,22 +77,28 @@ async function insertDescriptionWeatherByName(units,city){
 async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     jsonWeather = await getWether(coordinates,units,lang);
 
-    //name country
+    //name country card1
     document.getElementById("card1-header").innerText = jsonWeather.name; + ", "+jsonWeather.sys.country;
 
-    //temperature
+    //temperature card1
     let temp = jsonWeather.main.temp;
     temp = temp.toFixed(0);
     document.getElementById("card1-temperature").innerText = temp + "°";
 
-    //basic info
+    //basic info card1
     let info = "";
-
     jsonWeather.weather.forEach(element => {
         info = info + " " + element.description;
     });
-
     document.getElementById("card1-info").innerText = info;
+
+    //immage card1 
+    var url = "http://openweathermap.org/img/wn/";
+    var dim = "@2x.png";
+
+    let immageCode = jsonWeather.weather[0].icon;
+    immageCode = url + immageCode + dim ;
+    document.getElementById("immage-c1").setAttribute("src",immageCode);
 
     //name country card2
     document.getElementById("card2-header").innerText = "Il meteo di oggi a "+ jsonWeather.name + " " + jsonWeather.sys.country;
