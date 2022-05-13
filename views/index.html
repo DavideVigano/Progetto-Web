@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="css/provaStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 
     <!--javascript per video
@@ -209,41 +209,47 @@
         </div>
       </div>
 
-        <!--Separatore-->
+
+
+
+
+
+      <!--extra-->
+      <!-- sistemare
+        Separatore
         <hr class="featurette-divider">
 
-        <!-- Container -->
+         Container 
         <div class="containerPrevisioni">
     
-        <!-- Divise in 4 colonne anteprima meteo-->
+         Divise in 4 colonne anteprima meteo
         <div class="row">
-            <!-- sezione 1-->
+             sezione 1
             <div class="col-6 col-md-3 centro">
                 <img src="Images/Svg-meteo/Sole.svg" class="svgMeteo" alt="Sole"><br>
                 <h2><a class="title-meteo">Milano</a></h2>
                 <p class="temperatura-meteo" id="milanTemp"></p>
             </div>
-            <!-- sezione 2-->
+             sezione 2
             <div class="col-6 col-md-3 centro">
                 <img src="Images/Svg-meteo/vento.svg" class="svgMeteo" alt="vento">
                 <h2><a class="title-meteo">Berlino</a></h2>
                 <p class="temperatura-meteo">15°</p>
             </div>
-            <!-- sezione 3-->
+             sezione 3
             <div class="col -6 col-md-3 centro">
                 <img src="Images/Svg-meteo/neve.svg" class="svgMeteo" alt="neve">
                 <h2><a class="title-meteo">New York</a></h2>
                 <p class="temperatura-meteo">-5°</p>
             </div>
-            <!-- sezione 4-->
+             sezione 4
             <div class="col-6 col-md-3 centro">
                 <img src="Images/Svg-meteo/pioggia.svg" class="svgMeteo" alt="pioggia">
                 <h2><a class="title-meteo centro">Pechino</a></h2>
                 <p class="temperatura-meteo centro" > 6°</p>
             </div>
         </div>
-
-        <!-- Diviso in 2 colonne notizie giorno -->
+         Diviso in 2 colonne notizie giorno 
         <div class="row mt-3 mb-3">
             <div class="col-md-6">
                 <div class="row g-0 border border-3 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -275,7 +281,7 @@
             </div>
         </div>
   
-        <!-- START THE FEATURETTES -->
+         START THE FEATURETTES 
     
         <hr class="featurette-divider">
     
@@ -310,7 +316,7 @@
   
         <hr class="featurette-divider">
     
-        <!-- sistemare
+
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Infine, questo. </font></font><span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Scacco matto.</font></font></span></h2>
@@ -393,10 +399,10 @@
               </div>
             </div>
         </div>
-      -->
-        <!-- /END THE FEATURETTES -->
+      
+        /END THE FEATURETTES 
     
-      </div><!-- /.container -->
+      </div> /.container -->
     
     
       <!-- FOOTER -->
@@ -406,6 +412,25 @@
     </main>
     <div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div>
 </body>
+<script>
+  //chiamo il web worker
+  let worker = new Worker('js/bot_noioso.js');
+
+  // add listen to get data from worker
+  worker.addEventListener('message', function (e) {
+      if (e.returnValue) {
+        console.log(e.data)
+      } else {
+        console.log("error");
+      }
+  }, false);
+
+  //ricevo messaggio dal web worker
+  worker.onmessage = function(event){
+    console.log(event);
+  }
+
+</script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>

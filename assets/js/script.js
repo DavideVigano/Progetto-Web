@@ -11,7 +11,6 @@ document.getElementById("change-mode").onclick = function () {
 
     } else {
         obj.darkMode = true;
-        console.log(obj);
     }
     obj = JSON.stringify(obj);
     localStorage.setItem("preferances",obj);
@@ -121,7 +120,6 @@ async function insertDescriptionWeatherByName(units,city){
 
 async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     jsonWeather = await getWether(coordinates,units,lang);
-    console.log(jsonWeather);
 
     //name country card1
     document.getElementById("card1-header").innerText = jsonWeather.name; + ", "+jsonWeather.sys.country;
@@ -143,13 +141,8 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     var dim = ".svg";
 
     let imageCode = jsonWeather.weather[0].icon;
-    let id = jsonWeather.weather[0].id
-
-    let checked = checkCodeImage(imageCode);
-    console.log(checked);
-    if (checked) {
-        imageCode = imageCode + id;
-        console.log('entrato', imageCode);
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
     }
 
     imageCode = url + imageCode + dim ;
@@ -269,7 +262,6 @@ async function insertHourlyForcastByCoordinates(units,coordinates,lang){
 
     imageCode = arrayJsonObject[4].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        console.log(imageCode);
         imageCode = imageCode + arrayJsonObject[4].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
@@ -321,7 +313,6 @@ async function insertAirQualityByCordinates(coordinates,time) {
     document.getElementById("index-c4").innerText = index;
 
     let value = jsonObj.list[0].components.pm2_5;
-    console.log(jsonObj.list[0].components);
     value = value.toFixed(0);
     document.getElementById("value-c4").innerText = value + "%";
 }
