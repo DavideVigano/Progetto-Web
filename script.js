@@ -41,6 +41,13 @@ function start() {
     }
 }
 
+function checkCodeImage(imageCode){
+    if (imageCode == "10d" || imageCode == "9d" || imageCode == "13d" ){
+        return true;
+    }
+    return false;
+}
+
 async function getCoordinates(name){
     let response = await fetch ("http://api.openweathermap.org/geo/1.0/direct?q=" + name + "&appid=1dca80949b57093744a6ebd31d5c974b",{
         method: "GET"
@@ -114,6 +121,7 @@ async function insertDescriptionWeatherByName(units,city){
 
 async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     jsonWeather = await getWether(coordinates,units,lang);
+    console.log(jsonWeather);
 
     //name country card1
     document.getElementById("card1-header").innerText = jsonWeather.name; + ", "+jsonWeather.sys.country;
@@ -131,12 +139,16 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     document.getElementById("card1-info").innerText = info;
 
     //immage card1 
-    var url = "http://openweathermap.org/img/wn/";
-    var dim = "@2x.png";
+    var url = "Images/Icon-weather/";
+    var dim = ".svg";
 
-    let immageCode = jsonWeather.weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c1").setAttribute("src",immageCode);
+    let imageCode = jsonWeather.weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c1").setAttribute("src",imageCode);
 
     //name country card2
     document.getElementById("card2-header").innerText = "Il meteo di oggi a "+ jsonWeather.name + " " + jsonWeather.sys.country;
@@ -221,26 +233,41 @@ async function insertHourlyForcastByCoordinates(units,coordinates,lang){
     // immage
     var url = "Images/Icon-weather/";
     var dim = ".svg";
-    console.log(arrayJsonObject[0]);
-    let immageCode = arrayJsonObject[0].weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c3-c1").setAttribute("src",immageCode);
 
-    immageCode = arrayJsonObject[1].weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c3-c2").setAttribute("src",immageCode);
+    let imageCode = arrayJsonObject[0].weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c3-c1").setAttribute("src",imageCode);
 
-    immageCode = arrayJsonObject[2].weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c3-c3").setAttribute("src",immageCode);
+    imageCode = arrayJsonObject[1].weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c3-c2").setAttribute("src",imageCode);
 
-    immageCode = arrayJsonObject[3].weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c3-c4").setAttribute("src",immageCode);
+    imageCode = arrayJsonObject[2].weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c3-c3").setAttribute("src",imageCode);
 
-    immageCode = arrayJsonObject[4].weather[0].icon;
-    immageCode = url + immageCode + dim ;
-    document.getElementById("immage-c3-c5").setAttribute("src",immageCode);
+    imageCode = arrayJsonObject[3].weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c3-c4").setAttribute("src",imageCode);
+
+    imageCode = arrayJsonObject[4].weather[0].icon;
+    if (checkCodeImage(imageCode)) {
+        imageCode = imageCode + jsonWeather.weather[0].id;
+    }
+    imageCode = url + imageCode + dim ;
+    document.getElementById("immage-c3-c5").setAttribute("src",imageCode);
     
     //probability rain 
     let probability = arrayJsonObject[0].pop;
