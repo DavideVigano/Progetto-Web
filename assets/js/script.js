@@ -143,8 +143,13 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     var dim = ".svg";
 
     let imageCode = jsonWeather.weather[0].icon;
-    if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+    let id = jsonWeather.weather[0].id
+
+    let checked = checkCodeImage(imageCode);
+    console.log(checked);
+    if (checked) {
+        imageCode = imageCode + id;
+        console.log('entrato', imageCode);
     }
 
     imageCode = url + imageCode + dim ;
@@ -236,35 +241,36 @@ async function insertHourlyForcastByCoordinates(units,coordinates,lang){
 
     let imageCode = arrayJsonObject[0].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+        imageCode = imageCode + arrayJsonObject[0].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
     document.getElementById("immage-c3-c1").setAttribute("src",imageCode);
 
     imageCode = arrayJsonObject[1].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+        imageCode = imageCode + arrayJsonObject[1].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
     document.getElementById("immage-c3-c2").setAttribute("src",imageCode);
 
     imageCode = arrayJsonObject[2].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+        imageCode = imageCode + arrayJsonObject[2].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
     document.getElementById("immage-c3-c3").setAttribute("src",imageCode);
 
     imageCode = arrayJsonObject[3].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+        imageCode = imageCode + arrayJsonObject[3].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
     document.getElementById("immage-c3-c4").setAttribute("src",imageCode);
 
     imageCode = arrayJsonObject[4].weather[0].icon;
     if (checkCodeImage(imageCode)) {
-        imageCode = imageCode + jsonWeather.weather[0].id;
+        console.log(imageCode);
+        imageCode = imageCode + arrayJsonObject[4].weather[0].id;
     }
     imageCode = url + imageCode + dim ;
     document.getElementById("immage-c3-c5").setAttribute("src",imageCode);

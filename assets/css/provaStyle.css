@@ -53,7 +53,7 @@
     border-style: solid;
     border-color: #0F80AA;
     border-radius: 20px;
-    background: #0F80AA url(Images/General/icons-search-25.png) no-repeat right;
+    background: #0F80AA url(../Images/General/icons-search-25.png) no-repeat right;
     background-origin: content-box;
     padding-right: 15px;
     color: white;
