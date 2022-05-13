@@ -13,14 +13,10 @@ app.use(express.static(__dirname + '/assets'));
 
 // webWorker
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/views/prova.html'));
+    res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.get('/index', function (req, res) {
-    res.sendFile(path.join(__dirname, '/views/prova.html'));
-});
-
-app.get('/test', function (req, res) {
     res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
