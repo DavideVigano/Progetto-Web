@@ -153,6 +153,12 @@ console.log('Server started at http://localhost:' + port);
 // ** UTILITIES **
 
 // ---- API OPENWEATHER ------
+function checkCodeImage(imageCode){
+    if (imageCode == "10d" || imageCode == "9d" || imageCode == "13d"||imageCode == "10n" || imageCode == "9n" || imageCode == "13n" ){
+        return true;
+    }
+    return false;
+}
 
 getPlaceInfo = async (cityUrl) => {
     try {
@@ -179,14 +185,26 @@ getForecastCity = async (forecastUrl, latitude, longitude) => {
         }
 
         result.daily.forEach(element => {
+            // inserisco immagini 
+            var img = "Images/Icon-weather/";
+            var type = ".svg";
 
+            let imageCode = element.weather[0].icon;
+            if (checkCodeImage(imageCode)) {
+                imageCode = imageCode + element.weather[0].id;
+            }
+            imageCode = img + imageCode + type;
+
+            //calcolo la temperatura
+            let temperature = element.temp.day - 273.15;
+            temperature = temperature.toFixed(0);
             let outputObject = {
-                temp: Math.round(`${element.temp.day}` - 273.15),
+                temp: temperature,
                 description: element.weather[0].description,
                 time: `${new Date(
                     element.dt * 1000
                 ).toLocaleString('it-IT')}`,
-                icon: `http://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png`,
+                icon: imageCode,
                 humidity: element.humidity,
                 clouds: element.clouds,
                 visibility: element.visibility,
@@ -237,3 +255,4 @@ getData = async (collectionName, place) => {
         return Promise.resolve([]);
     }
 }
+
