@@ -7,7 +7,7 @@
 
 .dark-mode{
     background-image: none;
-    background-color: black;
+    background-color: rgb(1, 1, 31);
     color: beige;
 }
 
@@ -24,9 +24,14 @@
 }
 
 .main{
-    margin: 0px 100px;
+    margin: 0px;
+    padding-left: 16%;
+    padding-right: 16%
 }
 
+.right{
+    text-align: right;
+}
 /*Stile per intestazione e navbar*/
 .intestazione{
     background-color: rgb(29, 78, 137, 0.6);
@@ -34,7 +39,6 @@
     border: 0px;
     padding: 11px 100px;
 }
-
 
 .logo-name{
     color: white;
@@ -82,20 +86,122 @@
     color: white;
 }
 
+.container-news{
+    background:rgba(0, 0, 255, 0.03);
+    height: 40px;
+    padding: 0 2%;
+    text-align: center;
+}
+
+.container-news marquee{
+    font-size: 18px;
+    margin-top: 5px
+}
+.news-content p{
+    margin-right: 41px;
+    color: white;
+    display: inline
+}
+
+/* Stile Navbar*/
+
+.navbar-pages {
+    background: rgb(29, 78, 137, 0.9);
+}
+
+.navbar-pages>a {
+    color: #fff
+}
+
+.navbar-pages>a:hover {
+    border-bottom: 2px solid #fff;
+    color: white;
+}
+
+.navbar-pages>a::marker {
+    border-bottom: 2px solid #fff;
+    color: white;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    background-color: transparent;  
+}
+
 /*Stile Info meteo*/
+.card-weather{
+    border-radius: 11px;
+}
+
 .card-custom{
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
 }
 
-.card-weather{
-    border-radius: 8px;
+.card-weather-generic{
+    border: 0px;
+    background-image: url("../Images/General/cielo-sereno.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .card-info-weather{
     border-left: 0px;
     border-right: 0px;
+}
+
+.card-header-custom{
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.67rem - 0px) calc(.67rem - 0px) 0 0;
+}
+
+.card-now > .card-title {
+    color: white;
+    font-size: 800%;
+}
+
+.card-now > .card-text {
+    color: white;
+    font-weight: bold;
+    font-size: 170%;
+}
+
+.icon-weather{
+    height: 100%;
+    width: auto;
+}
+
+.card-intestazione{
+    font-weight: bold;
+    padding-left: 16px;
+    font-size: 18px;
+}
+
+#card2-temperature{
+    font-size: 350%;
+}
+
+.icon-info{
+    height: 20px;
+    width: 20px;
+}
+
+.list-group-flush > .list-group-item:last-child{
+    border: 0px;
+    border-end-end-radius: calc(.67rem - 0px) calc(.67rem - 0px);
+}
+
+.card-info-weather{
+    border-bottom: 0px;
+    border-end-end-radius: 11px;
 }
 /* Stile per Anteprima meteo */
 
@@ -147,12 +253,22 @@
 
 
 
-@media (max-width: 768px) {
-    #myCarousel{
-        height: 250px;
-    }
 
-    .sizeImg{
-        height: 250px;
+@media (max-width: 1200px) {
+    .main{
+        padding-left: 10%;
+        padding-right: 10%
+    }
+}
+@media (max-width: 992px) {
+    .main{
+        padding-left: 5%;
+        padding-right: 5%
+    }
+}
+@media (max-width: 768px) {
+    .main{
+        padding-left: 2%;
+        padding-right: 2%
     }
 }

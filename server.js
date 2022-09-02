@@ -39,7 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //setto il display di default
 app.get('/', function (req, res) {
-    res.render("weatherAPI", { weather: null, error: null });
+    res.render("index", { weather: null, error: null });
     //res.render("weatherAPI")
     //res.sendFile(path.join(__dirname, '/views/weatherAPI.html'));
 });
@@ -53,8 +53,6 @@ app.get('/weatherAPI', function (req, res) {
 // post latitude & longitude user -> getData from openWeatherAPI
 app.post('/weatherAPI', async function (req, res) {
 
-    // latitudine e longitudine passato dall'utente
-    // devo modificare, magari gli passo nome città 
     const latitude = parseFloat(req.body.latitude);
     const longitude = parseFloat(req.body.longitude);
 
@@ -144,7 +142,6 @@ app.post('/showDataDB', async function (req, res) {
         });
 }
 );
-
 
 // stampo porta
 app.listen(port);

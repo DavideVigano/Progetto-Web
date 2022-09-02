@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ita">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Homepage | Previsioni Meteo</title>
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel-rtl/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+
+    <!--javascript per video
+    <link href="vi-lazyload.min.css" rel="stylesheet">
+    <script src="vi-lazyload.min.js"></script>
+    -->
+
+    <!--link per inserire meta tag in formato json-->
+    <script src="json/meta.json"></script>
+
+</head>
+<body class="default-mode">
+    <!--serve per inviare le coordinate prese-->
+    <form id="coordinates" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+    </form>
+
+    <!-- Intestazione -->
+    <div class="container-fluid intestazione">
+        <div class= "row align-items-center">
+            <div class="col">
+                <a class="navbar-brand" href="#">
+                    <img src="Images/Svg-meteo/Sole.svg" alt="weather logo" width="60" height="60" class="d-inline-block align-text-center me-3 logo-meteo-intestazione">
+                    <span class="logo-name">Easy Meteo</span> 
+                </a>
+            </div>
+            <div class="col-6 text-center"> <!--devo sistemre-->
+                <div class="container align-items-center" > 
+                    <input role="textbox" id="" class="search-input" type="text" placeholder="Cerca città o CAP " value="">
+                </div>
+            </div>
+            <div class="col text-end">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle text-center align-items-center button-lan" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!--Mettere icona-->
+                    IT | °C
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><span class="dropdown-item-text">Seleziona Lingua e Temperatura</span></li>
+                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News formato marquee-->
+    <div class="container-fluid container-news">
+        <marquee class="news-content"> 
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p> <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto </p> <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam </p> 
+        </marquee> 
+    </div>
+
+    <!--Navbar-->   
+    <nav class="nav nav-pills flex-column flex-sm-row navbar-pages">
+      <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Oggi</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="#">Orario</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="#">10 giorni</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="#">Weekend</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="#">Mensile</a>
+    </nav>
+
+    <!-- change mod-->
+    <div class="container-fluid recently-searches">
+        <div class="form-check form-switch">
+          <input class="form-check-input" id="change-mode" type="checkbox" role="switch">
+        </div>
+    </div>
+
+    <main class="main">
+      <!-- card 1 -->
+      <div class="card mt-3 card-weather card-weather-generic">
+        <div class="card-header card-header-custom" id="card1-header">
+        </div>
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col card-now">
+                <h2 class="card-title" id="card1-temperature"></h2>
+                <p class="card-text" id="card1-info"></p>
+              </div>
+              <div class="col right">
+                <span><img src="" id="immage-c1" class="icon-weather" alt="..."></span>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+
+      <!-- card 2-->
+      <div class="card mt-3 card-weather">
+        <div class="card-body card-custom">
+          <div class="card-intestazione" id="card2-header">
+          </div>
+          <h2 class="card-title p-3" id="card2-temperature"></h2>
+          <div class="card-group">
+            <div class="card card-info-weather me-3">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/termometro.svg" class="icon-info" alt="..."></span>
+                        Max/Min 
+                      </div>
+                      <div class="col right p-0">
+                        <span id="max-min"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/umidita.svg" class="icon-info" alt="..."></span>
+                        Umidità
+                      </div>
+                      <div class="col right p-0">
+                        <span id="humidity"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item last-li-weather">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/pressione.svg" class="icon-info" alt="..."></span>
+                        Pressione 
+                      </div>
+                      <div class="col right p-0">
+                        <span id="pressure"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="card card-info-weather me-3">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/percepiti.svg" class="icon-info" alt="..."></span>
+                        Percepiti
+                      </div>
+                      <div class="col right p-0">
+                        <span id="feels-like"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/vento.svg" class="icon-info" alt="..."></span>
+                        Vento
+                      </div>
+                      <div class="col right p-0">
+                        <span id="wind"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item last-li-weather">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col p-0">
+                        <span><img src="Images/General/visibilita.svg" class="icon-info" alt="..."></span>
+                        Visibilità
+                      </div>
+                      <div class="col right p-0">
+                        <span id="visibility"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!--card 3-->
+      <div class="card mt-3 card-weather">
+        <div class="card-header" id="card3-header">
+          Previsioni orarie
+        </div>
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="hour-c3-c1" >Ora</h5>
+              <p class="card-text" id="temperature-c3-c1" >temperarura</p>
+              <img class="img-fluid" id="immage-c3-c1" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c3-c1" >percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="hour-c3-c2" >Ora</h5>
+              <p class="card-text" id="temperature-c3-c2">temperarura</p>
+              <img class="img-fluid" id="immage-c3-c2" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c3-c2">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="hour-c3-c3" >Ora</h5>
+              <p class="card-text"id="temperature-c3-c3">temperarura</p>
+              <img class="img-fluid" id="immage-c3-c3" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted"id="rain-c3-c3">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="hour-c3-c4">Ora</h5>
+              <p class="card-text"id="temperature-c3-c4">temperarura</p>
+              <img class="img-fluid" id="immage-c3-c4" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c3-c4">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="hour-c3-c5">Ora</h5>
+              <p class="card-text"id="temperature-c3-c5">temperarura</p>
+              <img class="img-fluid" class="img-fluid" id="immage-c3-c5" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c3-c5">percentuale pioggia</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--card4-->
+      <div class="card border-dark mb-3 mt-3" style="max-width: 18rem;">
+        <div class="card-header">Indice qualità dell'aria</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title" id="index-c4">Tipo</h5>
+          <p id="value-c4">valore</p>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, repellat ducimus?...</p>
+        </div>
+      </div> 
+    </main>
+
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', sendRequestAPI());
+
+    async function sendRequestAPI() {
+
+        //document.getElementById("form").setAttribute("action", "/weatherAPI");
+
+        //geoloc
+        navigator.geolocation.getCurrentPosition(position=>{
+            var { latitude, longitude } = position.coords;
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+            document.getElementById("form").submit();
+        }, error =>{
+            console.warn(`ERROR(${error.code}): ${error.message}`);
+            //default cordinates (Milano)
+            var latitude  = 45.4642;
+            var longitude = 9.1898;
+            console.log(latitude);
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+            document.getElementById("form").submit();
+        });
+
+
+        return false;
+    }
+
+    sendRequestAPI()
+</script>
+</body>
+<script>
+    //chiamo il web worker
+    let worker = new Worker('js/bot_noioso.js');
+  
+    // add listen to get data from worker
+    worker.addEventListener('message', function (e) {
+        if (e.returnValue) {
+          console.log(e.data)
+        } else {
+          console.log("error");
+        }
+    }, false);
+  
+    //ricevo messaggio dal web worker
+    worker.onmessage = function(event){
+      console.log(event);
+    }
+  
+</script>
+<script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+</html>

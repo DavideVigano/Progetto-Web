@@ -131,16 +131,27 @@
 
             event.preventDefault();
 
-            document.getElementById("form").setAttribute("action", "/weatherAPI");
+document.getElementById("form").setAttribute("action", "/weatherAPI");
 
-            navigator.geolocation.getCurrentPosition(position => {
-                const { latitude, longitude } = position.coords;
-                document.getElementById("latitude").value = latitude;
-                document.getElementById("longitude").value = longitude;
-                document.getElementById("form").submit();
-            });
+//geoloc
+navigator.geolocation.getCurrentPosition(position=>{
+    var { latitude, longitude } = position.coords;
+    document.getElementById("latitude").value = latitude;
+    document.getElementById("longitude").value = longitude;
+    document.getElementById("form").submit();
+}, error =>{
+    console.warn(`ERROR(${error.code}): ${error.message}`);
+    //default cordinates (Milano)
+    var latitude  = 45.4642;
+    var longitude = 9.1898;
+    console.log(latitude);
+    document.getElementById("latitude").value = latitude;
+    document.getElementById("longitude").value = longitude;
+    document.getElementById("form").submit();
+});
 
-            return false;
+
+return false;
         }
 
         // send request for DB
