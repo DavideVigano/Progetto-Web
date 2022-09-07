@@ -44,6 +44,16 @@ app.get('/', function (req, res) {
     //res.sendFile(path.join(__dirname, '/views/weatherAPI.html'));
 });
 
+app.get('/index.ejs', function (req, res) {
+    res.render("index", { weather: null, error: null });
+});
+
+app.get('/orario.ejs', function (req, res) {
+    res.render("orario", { weather: null, error: null });
+});
+
+
+
 app.get('/weatherAPI', function (req, res) {
     res.render("weatherAPI", { weather: null, error: null });
     //res.render("weatherAPI")

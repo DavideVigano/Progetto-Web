@@ -73,10 +73,8 @@
     <!--Navbar-->   
     <nav class="nav nav-pills flex-column flex-sm-row navbar-pages">
       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Oggi</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="#">Orario</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="#">10 giorni</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="#">Weekend</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="#">Mensile</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="orario.ejs">Orario</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="#">5 giorni</a>
     </nav>
 
     <!-- change mod-->
@@ -202,67 +200,111 @@
           </div>
         </div>
       </div>
-      </div>
 
       <!--card 3-->
       <div class="card mt-3 card-weather">
         <div class="card-header" id="card3-header">
           Previsioni orarie
         </div>
-        <div class="card-group">
-          <div class="card">
+        <div class="card-group text-center">
+          <div class="card card3">
             <div class="card-body">
               <h5 class="card-title" id="hour-c3-c1" >Ora</h5>
-              <p class="card-text" id="temperature-c3-c1" >temperarura</p>
+              <p class="card-text card-text-temperature" id="temperature-c3-c1" >temperarura</p>
               <img class="img-fluid" id="immage-c3-c1" src="" alt="meteo immage">
               <p class="card-text"><small class="text-muted" id="rain-c3-c1" >percentuale pioggia</small></p>
             </div>
           </div>
-          <div class="card">
+          <div class="card card3">
             <div class="card-body">
               <h5 class="card-title" id="hour-c3-c2" >Ora</h5>
-              <p class="card-text" id="temperature-c3-c2">temperarura</p>
+              <p class="card-text card-text-temperature" id="temperature-c3-c2">temperarura</p>
               <img class="img-fluid" id="immage-c3-c2" src="" alt="meteo immage">
               <p class="card-text"><small class="text-muted" id="rain-c3-c2">percentuale pioggia</small></p>
             </div>
           </div>
-          <div class="card">
+          <div class="card card3">
             <div class="card-body">
               <h5 class="card-title" id="hour-c3-c3" >Ora</h5>
-              <p class="card-text"id="temperature-c3-c3">temperarura</p>
+              <p class="card-text card-text-temperature"id="temperature-c3-c3">temperarura</p>
               <img class="img-fluid" id="immage-c3-c3" src="" alt="meteo immage">
               <p class="card-text"><small class="text-muted"id="rain-c3-c3">percentuale pioggia</small></p>
             </div>
           </div>
-          <div class="card">
+          <div class="card card3">
             <div class="card-body">
               <h5 class="card-title" id="hour-c3-c4">Ora</h5>
-              <p class="card-text"id="temperature-c3-c4">temperarura</p>
+              <p class="card-text card-text-temperature"id="temperature-c3-c4">temperarura</p>
               <img class="img-fluid" id="immage-c3-c4" src="" alt="meteo immage">
               <p class="card-text"><small class="text-muted" id="rain-c3-c4">percentuale pioggia</small></p>
             </div>
           </div>
-          <div class="card">
+          <div class="card card3">
             <div class="card-body">
               <h5 class="card-title" id="hour-c3-c5">Ora</h5>
-              <p class="card-text"id="temperature-c3-c5">temperarura</p>
-              <img class="img-fluid" class="img-fluid" id="immage-c3-c5" src="" alt="meteo immage">
+              <p class="card-text card-text-temperature"id="temperature-c3-c5">temperarura</p>
+              <img class="img-fluid" id="immage-c3-c5" src="" alt="meteo immage">
               <p class="card-text"><small class="text-muted" id="rain-c3-c5">percentuale pioggia</small></p>
             </div>
           </div>
         </div>
+        <a class="btn btn-primary btn-ore" href="orario.ejs" role="button">Prossime 48 ore</a>
       </div>
 
       <!--card4-->
-      <div class="card border-dark mb-3 mt-3" style="max-width: 18rem;">
-        <div class="card-header">Indice qualità dell'aria</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title" id="index-c4">Tipo</h5>
-          <p id="value-c4">valore</p>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, repellat ducimus?...</p>
+      <div class="card mt-3 card-weather mb-5">
+        <div class="card-header" id="card3-header">
+          Previsioni giornaliere
         </div>
-      </div> 
+        <div class="card-group text-center">
+          <div class="card card3">
+            <div class="card-body">
+              <h5 class="card-title" id="day-c4-c1" >Giorno</h5>
+              <p class="card-text card-text-temperature" id="temperature-c4-c1" >temperarura</p>
+              <img class="img-fluid" id="immage-c4-c1" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c4-c1" >percentuale pioggia</small></p>
+            </div>
+          </div>
+
+          <div class="card card3">
+            <div class="card-body">
+              <h5 class="card-title" id="day-c4-c2" >Giorno</h5>
+              <p class="card-text card-text-temperature" id="temperature-c4-c2">temperarura</p>
+              <img class="img-fluid" id="immage-c4-c2" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c4-c2">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card card3">
+            <div class="card-body">
+              <h5 class="card-title" id="day-c4-c3" >Giorno</h5>
+              <p class="card-text card-text-temperature"id="temperature-c4-c3">temperarura</p>
+              <img class="img-fluid" id="immage-c4-c3" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted"id="rain-c4-c3">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card card3">
+            <div class="card-body">
+              <h5 class="card-title" id="day-c4-c4">Giorno</h5>
+              <p class="card-text card-text-temperature"id="temperature-c4-c4">temperarura</p>
+              <img class="img-fluid" id="immage-c4-c4" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c4-c4">percentuale pioggia</small></p>
+            </div>
+          </div>
+          <div class="card card3">
+            <div class="card-body">
+              <h5 class="card-title" id="day-c4-c5">Giorno</h5>
+              <p class="card-text card-text-temperature"id="temperature-c4-c5">temperarura</p>
+              <img class="img-fluid" id="immage-c4-c5" src="" alt="meteo immage">
+              <p class="card-text"><small class="text-muted" id="rain-c4-c5">percentuale pioggia</small></p>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-ore" href="#" role="button">Prossimi 5 giorni</a>
+      </div>
     </main>
+    <div class="footer">
+      <p> a cura di Vigano Davide ecc....</p>
+    </div>
 
 
 
@@ -279,7 +321,7 @@
             var { latitude, longitude } = position.coords;
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
-            document.getElementById("form").submit();
+            //document.getElementById("form").submit();
         }, error =>{
             console.warn(`ERROR(${error.code}): ${error.message}`);
             //default cordinates (Milano)
@@ -288,7 +330,7 @@
             console.log(latitude);
             document.getElementById("latitude").value = latitude;
             document.getElementById("longitude").value = longitude;
-            document.getElementById("form").submit();
+            //document.getElementById("form").submit();
         });
 
 
@@ -299,6 +341,7 @@
 </script>
 </body>
 <script>
+  /*
     //chiamo il web worker
     let worker = new Worker('js/bot_noioso.js');
   
@@ -315,7 +358,7 @@
     worker.onmessage = function(event){
       console.log(event);
     }
-  
+  */
 </script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>

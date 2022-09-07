@@ -32,6 +32,9 @@
 .right{
     text-align: right;
 }
+.left{
+    text-align: left;
+}
 /*Stile per intestazione e navbar*/
 .intestazione{
     background-color: rgb(29, 78, 137, 0.6);
@@ -203,6 +206,107 @@
     border-bottom: 0px;
     border-end-end-radius: 11px;
 }
+
+#card3-header{
+    font-weight: bold;
+    border: none;
+    background-color: white;
+}
+
+.card3{
+    border: 0px;
+    border-radius: 11px;
+}
+
+.card3 > .card-body > .card-title{
+    font-size: 15px;
+}
+
+.card-text-temperature{
+    font-size: 40px;
+    margin: 0px;
+    color: darkblue;
+}
+
+.card3 > .card-body > .img-fluid{
+    height: 45%;
+    width: auto;
+}
+
+.btn-ore{
+    margin-top: 10px;
+    border: 0px;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+}
+
+/* stile card orario*/
+.card-hour{
+    border-radius: 11px;
+}
+.icon-freccia{
+    position: absolute;
+    width: 20px;
+    height: auto;
+    right: 0;
+}
+.mostra{
+    width: 100%;
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 1px;
+}
+
+.nascosto{
+    display: none;
+    border: rgb(210, 207, 207) 1px solid;
+    border-radius: 11px;
+    margin: 20px 0px 10px 0px;
+}
+.icon-body-our{
+    height: max-content;
+    width: 18px;
+    margin-right: 5px;
+}
+
+.icon-head-our{
+    height: max-content;
+    width: 18px;
+    margin-right: 5px;
+}
+
+.span{
+    margin-right: 10px;
+}
+
+.img-head-our{
+    height: auto;
+    width: 40px;
+}
+
+.colHeadAy{
+    padding-top: 7px;
+}
+
+.temp{
+    font-size:x-large;
+    font-weight: bold;
+}
+
+
+
+.linea{
+    display: inline;
+}
+
+/* stile per footer */
+.footer{
+    background-color: white;
+    padding: 150px
+}
+
 /* Stile per Anteprima meteo */
 
 .containerPrevisioni{
