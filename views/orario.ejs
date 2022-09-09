@@ -47,7 +47,15 @@
             </div>
             <div class="col-6 text-center"> <!--devo sistemre-->
                 <div class="container align-items-center" > 
-                    <input role="textbox" id="" class="search-input" type="text" placeholder="Cerca città o CAP " value="">
+                    <form id="form-search1">
+                        <input
+                            type="text"
+                            class="search-input"
+                            id="search1"
+                            placeholder="Cerca città o CAP "
+                            autocomplete="off"
+                        />
+                    </form>
                 </div>
             </div>
             <div class="col text-end">
@@ -93,7 +101,7 @@
             <div class="card-body card-custom">
             <div class="card-intestazione" id="card-hour-header">
                 <h2>Previsione meteo per i prossimi giorni</h2>
-                <h5>Luogo Ora</h5>
+                <h5 id="luogo-ora">Luogo Ora</h5>
             </div>
             <h2 class="card-title p-3" id="card-hour-temperature"></h2>
             <div class="card-group">

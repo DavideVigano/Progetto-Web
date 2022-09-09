@@ -1,5 +1,6 @@
+/* Seleziono la modalità di visualizzazione Drak or not */
 document.addEventListener('DOMContentLoaded', start());
-//change visual mode 
+
 document.getElementById("change-mode").onclick = function () {
     var element = document.body;
     element.classList.toggle("dark-mode");
@@ -16,12 +17,12 @@ document.getElementById("change-mode").onclick = function () {
     localStorage.setItem("preferances",obj);
 }
 
-//salvare preferenza dark-light mode
+/* salvare preferenza dark-light mode */
 function start() {
-    //verifico se oggetto presente in local storage
+    /* verifico se oggetto presente in local storage */
     var obj = localStorage.getItem('preferances');
     if (obj) {
-        // oggetto presente in local storage lo prendo e lo carico
+        /* oggetto presente in local storage lo prendo e lo carico */
         obj = JSON.parse(obj);
         if (obj.darkMode == true) {
             document.body.classList.toggle("dark-mode");
@@ -29,17 +30,17 @@ function start() {
             toggle.checked = true;
         }
     }else{
-        //oggetto non presento, lo creo 
+        /* oggetto non presente */
         var preferance = {
             darkMode: false,
-            //date: new Date().toString(),
         }
-        //salvo oggetto in local storage
+        /* salvo oggetto in local storage */
         preferance = JSON.stringify(preferance);
         localStorage.setItem("preferances",preferance);
     }
 }
 
+/* Gestisco codici icone weather */
 function checkCodeImage(imageCode){
     if (imageCode == "10d" || imageCode == "9d" || imageCode == "13d"||imageCode == "10n" || imageCode == "9n" || imageCode == "13n" ){
         return true;
@@ -47,27 +48,8 @@ function checkCodeImage(imageCode){
     return false;
 }
 
-async function getCoordinates(name){
-    let response = await fetch ("http://api.openweathermap.org/geo/1.0/direct?q=" + name + "&appid=1dca80949b57093744a6ebd31d5c974b",{
-        method: "GET"
-    });
-
-    let jsonObj = await response.json();
-
-    let coordinates = {
-        lat: jsonObj[0].lat,
-        lon: jsonObj[0].lon,
-    }
-    return coordinates
-}
-
+/* funzioni API tempo */
 async function getWether(c, units,lang) {
-
-    if (units == "C") {
-        units = "metric" 
-    }else{
-        units = "standard"
-    }
 
     let response = await fetch ("https://api.openweathermap.org/data/2.5/weather?lat="+c.lat+"&lon="+c.lon+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units+"&lang="+lang,{
         method: "GET"
@@ -78,11 +60,7 @@ async function getWether(c, units,lang) {
 }
 
 async function getWetherDays(c,units,lang,day){
-    if (units == "C") {
-        units = "metric" 
-    }else{
-        units = "standard"
-    }
+
     let response = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+c.lat+"&lon="+c.lon+"&cnt="+day+"&appid=1dca80949b57093744a6ebd31d5c974b&units="+units+"&lang="+lang,{
         method: "GET"
     });
@@ -92,47 +70,52 @@ async function getWetherDays(c,units,lang,day){
     return jsonObj;
 }
 
+/* funzioni generiche */
 
-async function insertDescriptionWeatherByName(units,city){
+function getNElemnt(N,jsonObject) {
+    var arrayJsonObject = []
+    for (let index = 0; index < N; index++) {
+        arrayJsonObject[index] = jsonObject.list[index];
+    }
+    return arrayJsonObject
+}
 
-    var coordinates = await getCoordinates(city);
-    jsonWeather = await getWether(coordinates,units);
+function getDayElement(N,jsonObject){
+    var arrayJsonObject = []
+    let i = 1
+    for (let index = 0; index < N; index ++) {
+        arrayJsonObject[index] = jsonObject.list[i];
+        i = i + 8;
+    }
+    return arrayJsonObject
+}
 
-    //name country
-    document.getElementById("card1-header").innerText = city + ", " + jsonWeather.sys.country;
+function getWeekDay(date) {
+    let days = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+    return days[date.getDay()];
+}
 
-    //temperature
-    let temp = jsonWeather.main.temp;
-    temp = temp.toFixed(0);
-    document.getElementById("card1-temperature").innerText = temp + "°";
+function getWeekDayN(timestamp){
+    let date = new Date(timestamp);
+    let day = getWeekDay(date);
+    let num = date.getDate();
+    day = day + " " + num;
+    return day;
+}
 
-    //basic info
-    document.getElementById("card1-info").innerText = jsonWeather.weather[0].main + ", " + jsonWeather.weather[0].description;
+function getFullDay(date){
+    let days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
 
-    //name country card2
-    document.getElementById("card2-header").innerText = "Il meteo di oggi a "+ city + " " + jsonWeather.sys.country;
+    let mese = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
 
-    //temperature card2
-    document.getElementById("card2-temperature").innerText = temp + "°";
-
-    //info precise
-    let feels = jsonWeather.main.feels_like;
-    feels = feels.toFixed(0);
-
-    document.getElementById("feels-like").innerText = feels + "°";
-    document.getElementById("humidity").innerText = jsonWeather.main.humidity + " %";
-    document.getElementById("pressure").innerText = jsonWeather.main.pressure + " mb";
-
-    let min = jsonWeather.main.temp_max;
-    let max = jsonWeather.main.temp_min;
-    max = max.toFixed(0);
-    min = min.toFixed(0);
-    document.getElementById("max-min").innerText = max +"°/"+ min + " °" ;
-    document.getElementById("visibility").innerText = jsonWeather.visibility + " km";
-    document.getElementById("wind").innerText = jsonWeather.wind.speed + " km/h";
-
+    let day = days[date.getDay()] + " " + date.getDate() + " " +mese[date.getMonth()];
+    return day
 
 }
+
+
+/* Pagina Index 
+------------------------------------------------------------------------------------*/
 
 async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     jsonWeather = await getWether(coordinates,units,lang);
@@ -185,8 +168,6 @@ async function insertDescriptionWeatherByCoordinates(units,coordinates,lang){
     document.getElementById("max-min").innerText = max +"°/"+ min + "°" ;
     document.getElementById("visibility").innerText = jsonWeather.visibility + " km";
     document.getElementById("wind").innerText = jsonWeather.wind.speed + " km/h";
-
-
 }
 
 async function insertHourlyForcastByCoordinates(units,coordinates,lang){
@@ -324,8 +305,6 @@ async function insertDayForcastByCoordinates(units,coordinates,lang){
     day = getWeekDayN(arrayJsonObject[4].dt * 1000);
     document.getElementById("day-c4-c5").innerText = day;
 
-
-
     //insert temperatures
     let temperature = arrayJsonObject[0].main.temp;
     temperature = temperature.toFixed(0);
@@ -413,54 +392,13 @@ async function insertDayForcastByCoordinates(units,coordinates,lang){
     document.getElementById("rain-c4-c5").innerText = probability + '%';
 }
 
-function getNElemnt(N,jsonObject) {
-    var arrayJsonObject = []
-    for (let index = 0; index < N; index++) {
-        arrayJsonObject[index] = jsonObject.list[index];
-    }
-    return arrayJsonObject
-}
-
-function getDayElement(N,jsonObject){
-    var arrayJsonObject = []
-    let i = 1
-    for (let index = 0; index < N; index ++) {
-        arrayJsonObject[index] = jsonObject.list[i];
-        i = i + 8;
-    }
-    return arrayJsonObject
-}
-
-function getWeekDay(date) {
-    let days = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
-    return days[date.getDay()];
-}
-
-function getWeekDayN(timestamp){
-    let date = new Date(timestamp);
-    let day = getWeekDay(date);
-    let num = date.getDate();
-    day = day + " " + num;
-    return day;
-}
-
-function getFullDay(date){
-    let days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-
-    let mese = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-
-    let day = days[date.getDay()] + " " + date.getDate() + " " +mese[date.getMonth()];
-    return day
-
-}
-
-
-// pagina orario
+/* Pagina Orario 
+------------------------------------------------------------------------------------*/
 
 function insertDayOneByCordinates(jsonWeather) {
 
-    var arrayJsonObject = []
-    let i = 0
+    var arrayJsonObject = [];
+    let i = 0;
     var data = new Date(jsonWeather.list[i].dt * 1000);
     d = data.getDate();
 
@@ -474,10 +412,12 @@ function insertDayOneByCordinates(jsonWeather) {
         }
         i++;
     }
+    // Compila intestazione
+    console.log(arrayJsonObject[0]);
+    document.getElementById("luogo-ora").innerText = arrayJsonObject[0].name + ", " + arrayJsonObject[0].sys.country;
 
     // Inserisci il giorno 
     giorno = getFullDay(data);
-
     document.getElementById("mostra1").innerText = giorno;
 
     let img = document.createElement("img");
@@ -486,6 +426,7 @@ function insertDayOneByCordinates(jsonWeather) {
     img.setAttribute("alt","icon-freccia");
 
     document.getElementById("mostra1").appendChild(img);
+
     // Costruisci Infofrmazioni
     for ( i = 0; i < arrayJsonObject.length; i++) {
     
@@ -577,7 +518,7 @@ function insertDayOneByCordinates(jsonWeather) {
         img.setAttribute("alt","icon-pioggia");
 
         document.getElementById(spanImgId).appendChild(img);
-        testo = document.createTextNode(arrayJsonObject[i].pop * 100 + "%");
+        testo = document.createTextNode((arrayJsonObject[i].pop * 100).toFixed(0) + "%");
         document.getElementById(spanImgId).appendChild(testo);
 
         span = document.createElement("span");
@@ -802,7 +743,7 @@ function insertDayTwoByCordinates(jsonWeather) {
     d = data.getDay();
     d = d+1;
 
-    if (d > 7) {
+    if (d >= 7) {
         d = d - 7;
     }
 
@@ -820,6 +761,13 @@ function insertDayTwoByCordinates(jsonWeather) {
 
     giorno = getFullDay(data);
     document.getElementById("mostra2").innerText = giorno;
+
+    let img = document.createElement("img");
+    img.classList.add("icon-freccia");
+    img.setAttribute("src","Images/General/freccia-basso.svg");
+    img.setAttribute("alt","icon-freccia");
+
+    document.getElementById("mostra2").appendChild(img);
 
     // Costruisci Infofrmazioni
     for ( i = 0; i < arrayJsonObject.length; i++) {
@@ -912,7 +860,7 @@ function insertDayTwoByCordinates(jsonWeather) {
         img.setAttribute("alt","icon-pioggia");
 
         document.getElementById(spanImgId).appendChild(img);
-        testo = document.createTextNode(arrayJsonObject[i].pop * 100 + "%");
+        testo = document.createTextNode((arrayJsonObject[i].pop * 100 ).toFixed(0)+ "%");
         document.getElementById(spanImgId).appendChild(testo);
 
         span = document.createElement("span");
@@ -1136,10 +1084,12 @@ function insertDayThreeByCordinates(jsonWeather) {
     var data = new Date(jsonWeather.list[i].dt * 1000);
     d = data.getDay();
     d = d+2;
-    if (d > 7) {
+
+    if (d >= 7) {
         d = d - 7;
     }
 
+    console.log(d);
     for (let index = 0; index < 24; index ++) {
         x = new Date(jsonWeather.list[index].dt * 1000);
         x = x.getDay();
@@ -1154,6 +1104,13 @@ function insertDayThreeByCordinates(jsonWeather) {
 
     giorno = getFullDay(data);
     document.getElementById("mostra3").innerText = giorno;
+
+    let img = document.createElement("img");
+    img.classList.add("icon-freccia");
+    img.setAttribute("src","Images/General/freccia-basso.svg");
+    img.setAttribute("alt","icon-freccia");
+
+    document.getElementById("mostra3").appendChild(img);
 
     // Costruisci Infofrmazioni
     for ( i = 0; i < arrayJsonObject.length; i++) {
@@ -1246,7 +1203,7 @@ function insertDayThreeByCordinates(jsonWeather) {
         img.setAttribute("alt","icon-pioggia");
 
         document.getElementById(spanImgId).appendChild(img);
-        testo = document.createTextNode(arrayJsonObject[i].pop * 100 + "%");
+        testo = document.createTextNode((arrayJsonObject[i].pop * 100).toFixed(0) + "%");
         document.getElementById(spanImgId).appendChild(testo);
 
         span = document.createElement("span");
@@ -1463,8 +1420,7 @@ function insertDayThreeByCordinates(jsonWeather) {
     }
 }
 
-
-
+/* Inserisci il vari gioni (3) in base alle coordinate */
 async function insertDayByCordinates(units,coordinates,lang){
     let jsonWeather = await getWetherDays(coordinates,units,lang,24);
     insertDayOneByCordinates(jsonWeather);
@@ -1472,29 +1428,102 @@ async function insertDayByCordinates(units,coordinates,lang){
     insertDayThreeByCordinates(jsonWeather);
 }
 
+/*  Visualizza elementi Local Storage*/
+function viewStorage() {
 
-// roba per valori standard
-let units = "C";
-let city = "Milano";
-let lang = "it";
+    var coordinates = JSON.parse(localStorage.getItem('coordinate'));
 
-let coordinates = {
-    lat: 45.4642,
-    lon: 9.1898,
+    if (coordinates) {
+
+        var l = location.pathname;
+        switch (l) {
+            case "/index.ejs":
+                insertDescriptionWeatherByCoordinates(units,coordinates,lang);
+                insertHourlyForcastByCoordinates(units,coordinates,lang);
+                insertDayForcastByCoordinates(units,coordinates,lang);
+                break;
+            case "/orario.ejs":
+                insertDayByCordinates(units,coordinates,lang);
+                break;
+            default:
+                break;
+        }
+    }else{
+        /* caso nessun valore in local storage utilizzo posizione correntes */
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
 }
 
-//geoloc
+/* Converti City name in coordinate */
+
+async function getCoordinates(name){
+    let response = await fetch ("http://api.openweathermap.org/geo/1.0/direct?q=" + name +"&limit=5" + "&appid=1dca80949b57093744a6ebd31d5c974b",{
+        method: "GET"
+    });
+
+    let jsonObj = await response.json();
+    console.log(jsonObj);
+
+    let coordinates = {
+        lat: jsonObj[0].lat,
+        lon: jsonObj[0].lon,
+    }
+    return coordinates;
+}
+
+async function getNamePlace(){
+    try {
+        var input = document.getElementById('search1');
+        coordinates = await getCoordinates(input.value);
+
+        // salvo in local storage
+        position = JSON.stringify(coordinates);
+        console.log("posi "+position);
+        localStorage.setItem("coordinate",position);
+        console.log(localStorage.getItem('coordinate'));
+
+        window.location.reload(true);
+        
+    } catch (errore) {
+        alert("Il valore inserito non corrsponde a nessuna città")
+    }
+}
+
+
+/* Funzione per Successo o Fallimento della geolocalizzazione */
 function success(pos) {
-    let units = "C";
-    let lang = "it";
     let crd = pos.coords;
 
     let coordinates = {
         lat: crd.latitude,
         lon: crd.longitude,
     }
-    var l = location.pathname;
 
+    var l = location.pathname;
+    switch (l) {
+        case "/index.ejs":
+            insertDescriptionWeatherByCoordinates(units,coordinates,lang);
+            insertHourlyForcastByCoordinates(units,coordinates,lang);
+            insertDayForcastByCoordinates(units,coordinates,lang);
+            break;
+        case "/orario.ejs":
+            insertDayByCordinates(units,coordinates,lang);
+            break;
+        default:
+            break;
+    } 
+}
+  
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+
+    //coordinate di default 
+    let coordinates = {
+        lat: 45.4642,
+        lon: 9.1898,
+    }
+    
+    var l = location.pathname;
     switch (l) {
         case "/index.ejs":
             insertDescriptionWeatherByCoordinates(units,coordinates,lang);
@@ -1507,37 +1536,24 @@ function success(pos) {
         default:
             break;
     }
-    
 }
-  
-function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-    //default cordinates
-    let units = "C";
-    let lang = "it";
-    let coordinates = {
-        lat: 45.4642,
-        lon: 9.1898,
-    }
-    var l = location.pathname;
 
-    switch (l) {
-        case "/index.ejs":
-            insertDescriptionWeatherByCoordinates(units,coordinates,lang);
-            insertHourlyForcastByCoordinates(units,coordinates,lang);
-            insertDayForcastByCoordinates(units,coordinates,lang);
-            break;
-        case "/orario.ejs":
+/* Costanti */
+const units = "metric";
+const lang = "IT";
+const form1 = document.getElementById('form-search1');
 
-            break;
-        default:
-            break;
-    }
+/* Cerco valore nel LocalStorage */
+document.addEventListener('DOMContentLoaded', viewStorage());
+
+/* Ricerca dell'utente */
+if(form1!= null){
+    form1.addEventListener('submit', (e) => {
+        e.preventDefault(); //fa si che form non ricarichi la pagina
+        getNamePlace();
+    })
 }
-navigator.geolocation.getCurrentPosition(success, error);
-//insertDescriptionWeatherByName(units,city);
-//insertDescriptionWeatherByCoordinates(units,coordinates,lang);
-//insertAirQualityByCordinates(coordinates,time);
+
 
 
 
