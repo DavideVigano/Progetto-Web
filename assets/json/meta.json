@@ -2,7 +2,7 @@
     "@context": "http://schema.org",
     "@type": "WebPage",
     "image": "immagine.jpeg",
-    "url": "https://localhost/ProgettoWeb/index.html",
+    "url": "https://localhost/ProgettoWeb/index.ejs",
     "sameAs": [
         "https://www.facebook.com/",
         "https://www.instagram.com/",
@@ -10,7 +10,7 @@
         "https://www.youtube.com/channel/"
     ],
     "name": "Meteo Home",
-    "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo, con dettaglio per località sciistiche, marittime con anche la sezione Areonautica.",
+    "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo",
     "keywords": "meteo, previsioni, temperatura, week end, caldo, freddo, mare, montagna, pioggia, neve, tempo, condizioni atmosferiche",
     "inLanguage": "it",
     "copyrightHolder": "Davide Vigano'",

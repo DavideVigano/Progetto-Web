@@ -70,6 +70,14 @@ async function getWetherDays(c,units,lang,day){
     return jsonObj;
 }
 
+async function getNews(c) {
+    
+    let response = await fetch ("https://api.weather.gov/points/"+c.lat+","+c.lon,{
+        method: "GET"
+    });
+    var jsonObj = await response.json();
+    console.log(jsonObj);
+}
 /* funzioni generiche */
 
 function getNElemnt(N,jsonObject) {
@@ -413,9 +421,10 @@ function insertDayOneByCordinates(jsonWeather) {
         i++;
     }
     // Compila intestazione
-    console.log(arrayJsonObject[0]);
-    document.getElementById("luogo-ora").innerText = arrayJsonObject[0].name + ", " + arrayJsonObject[0].sys.country;
-
+    var text = jsonWeather.city.name + ", "+ jsonWeather.city.country;
+    document.getElementById("luogo-paese-ora").innerHTML = text;
+ 
+    
     // Inserisci il giorno 
     giorno = getFullDay(data);
     document.getElementById("mostra1").innerText = giorno;
@@ -1089,7 +1098,6 @@ function insertDayThreeByCordinates(jsonWeather) {
         d = d - 7;
     }
 
-    console.log(d);
     for (let index = 0; index < 24; index ++) {
         x = new Date(jsonWeather.list[index].dt * 1000);
         x = x.getDay();
@@ -1554,6 +1562,9 @@ if(form1!= null){
     })
 }
 
-
-
+let c = {
+    lat: 39.7456,
+    lon: -97.0892,
+}
+getNews(c);
 

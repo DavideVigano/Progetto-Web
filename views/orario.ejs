@@ -5,10 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Homepage | Previsioni Meteo</title>
+    <title>Previsioni Orarie</title>
     
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel-rtl/">
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -17,25 +15,14 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 
-    <!--javascript per video
-    <link href="vi-lazyload.min.css" rel="stylesheet">
-    <script src="vi-lazyload.min.js"></script>
-    -->
-
     <!--link per inserire meta tag in formato json-->
-    <script src="json/meta.json"></script>
+    <script src="json/meta2.json"></script>
 
     <!-- toggle-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 <body class="default-mode">
-    <!--serve per inviare le coordinate prese-->
-    <form id="coordinates" method="post" enctype="application/x-www-form-urlencoded">
-        <input type="hidden" name="latitude" id="latitude">
-        <input type="hidden" name="longitude" id="longitude">
-    </form>
-
     <!-- Intestazione -->
     <div class="container-fluid intestazione">
         <div class= "row align-items-center">
@@ -60,15 +47,11 @@
             </div>
             <div class="col text-end">
                 <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle text-center align-items-center button-lan" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="btnGroupDrop1" type="button" class="btn  text-center align-items-center button-lan">
                     <!--Mettere icona-->
                     IT | °C
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><span class="dropdown-item-text">Seleziona Lingua e Temperatura</span></li>
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
+                   
                 </div>
             </div>
         </div>
@@ -101,7 +84,7 @@
             <div class="card-body card-custom">
             <div class="card-intestazione" id="card-hour-header">
                 <h2>Previsione meteo per i prossimi giorni</h2>
-                <h5 id="luogo-ora">Luogo Ora</h5>
+                <p id="luogo-paese-ora">Luogo paese</p>
             </div>
             <h2 class="card-title p-3" id="card-hour-temperature"></h2>
             <div class="card-group">
@@ -135,7 +118,6 @@
     </main>
     <script src="js/script.js"></script>
     <script>
-
         $(document).ready(function(){
             $("#mostra1").click(function(){
                 $(".nascosta1").toggle();
@@ -153,36 +135,6 @@
                 $(".nascosta3").toggle();
             });
         });
-        
-
-        document.addEventListener('DOMContentLoaded', sendRequestAPI());
-    
-        async function sendRequestAPI() {
-    
-            //document.getElementById("form").setAttribute("action", "/weatherAPI");
-    
-            //geoloc
-            navigator.geolocation.getCurrentPosition(position=>{
-                var { latitude, longitude } = position.coords;
-                document.getElementById("latitude").value = latitude;
-                document.getElementById("longitude").value = longitude;
-                //document.getElementById("form").submit();
-            }, error =>{
-                console.warn(`ERROR(${error.code}): ${error.message}`);
-                //default cordinates (Milano)
-                var latitude  = 45.4642;
-                var longitude = 9.1898;
-                console.log(latitude);
-                document.getElementById("latitude").value = latitude;
-                document.getElementById("longitude").value = longitude;
-                //document.getElementById("form").submit();
-            });
-    
-    
-            return false;
-        }
-    
-        sendRequestAPI()
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>

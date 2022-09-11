@@ -1,0 +1,29 @@
+{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "immagine.jpeg",
+    "url": "https://localhost/ProgettoWeb/orario.ejs",
+    "sameAs": [
+        "https://www.facebook.com/",
+        "https://www.instagram.com/",
+        "https://twitter.com/",
+        "https://www.youtube.com/channel/"
+    ],
+    "name": "Previsioni Orarie",
+    "description": "Le previsioni del tempo orarie sempre aggiornate per tutte le località in Italia e nel mondo",
+    "keywords": "meteo, previsioni, temperatura, week end, caldo, freddo, mare, montagna, pioggia, neve, tempo, condizioni atmosferiche",
+    "inLanguage": "it",
+    "copyrightHolder": "Davide Vigano'",
+    "copyrightYear": "2022-2022",
+    "author": {
+        "@type": "Person",
+        "name": "Davide Vigano'",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "338 9580675",
+            "contactType": "customer service",
+            "areaServed": "IT",
+            "email": "prova@gmail.com"
+        }
+    }
+}
